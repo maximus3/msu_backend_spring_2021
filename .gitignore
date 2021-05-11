@@ -1,3 +1,3 @@
-hw_01/__pycache__
-hw_02/custom_meta/__pycache__
-hw_02/custom_list/__pycache__
+*.pyc
+.idea
+hw_04/messenger/application/local_settings.py

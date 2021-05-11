@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>HTML Документ</h1>
+
+<a href="/chats">Чаты</a>
+<br/>
+
+<ul>
+{% for chat in chat_list %}
+    <li><a href="/chats/{{ chat }}/">Чат {{ chat }}</a></li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

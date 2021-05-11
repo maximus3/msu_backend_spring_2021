@@ -3,7 +3,6 @@ from custom_list import CustomList
 
 
 class AddTest(unittest.TestCase):
-
     def setUp(self):
         self.basic_custom_list = CustomList([1, 2, 3])
         self.basic_list = [1, 2, 3]
@@ -15,8 +14,9 @@ class AddTest(unittest.TestCase):
         self.small_list = [1, 2]
 
     def test_list_type(self):
-        self.assertIsInstance(self.basic_custom_list + self.basic_custom_list,
-                              CustomList)
+        self.assertIsInstance(
+            self.basic_custom_list + self.basic_custom_list, CustomList
+        )
 
     def test_eq(self):
         ans = CustomList([2, 4, 6])
@@ -61,7 +61,6 @@ class AddTest(unittest.TestCase):
 
 
 class SubTest(unittest.TestCase):
-
     def setUp(self):
         self.basic_custom_list = CustomList([1, 2, 3])
         self.basic_list = [1, 2, 3]
@@ -73,8 +72,9 @@ class SubTest(unittest.TestCase):
         self.small_list = [1, 2]
 
     def test_list_type(self):
-        self.assertIsInstance(self.basic_custom_list - self.basic_custom_list,
-                              CustomList)
+        self.assertIsInstance(
+            self.basic_custom_list - self.basic_custom_list, CustomList
+        )
 
     def test_eq(self):
         ans = CustomList([0, 0, 0])
@@ -119,16 +119,35 @@ class SubTest(unittest.TestCase):
 
 
 class EqTest(unittest.TestCase):
-
     def test_not_eq(self):
         self.assertNotEqual(CustomList([1, 2, 3]), CustomList([1, 2, 4]))
 
     def test_eq(self):
-        self.assertEqual(CustomList([1, 2, 3]), CustomList([1, 1, 4]))
-        self.assertEqual(CustomList([1, 2, 3]), CustomList([1, 5]))
-        self.assertEqual(CustomList([1, 2, 3]), CustomList([6]))
+        self.assertTrue(CustomList([1, 2, 3]) == CustomList([1, 1, 4]))
+        self.assertTrue(CustomList([1, 2, 3]) == CustomList([1, 5]))
+        self.assertTrue(CustomList([1, 2, 3]) == CustomList([6]))
 
     def test_lt(self):
         self.assertTrue(CustomList([1, 2, 3]) < CustomList([1, 1, 10]))
         self.assertTrue(CustomList([1, 2, 3]) < CustomList([1, 500]))
         self.assertTrue(CustomList([1, 2, 3]) < CustomList([60]))
+
+    def test_gt(self):
+        self.assertFalse(CustomList([1, 2, 3]) > CustomList([1, 1, 10]))
+        self.assertFalse(CustomList([1, 2, 3]) > CustomList([1, 500]))
+        self.assertFalse(CustomList([1, 2, 3]) > CustomList([60]))
+
+    def test_le(self):
+        self.assertTrue(CustomList([1, 2, 3]) <= CustomList([1, 1, 10]))
+        self.assertTrue(CustomList([1, 2, 3]) <= CustomList([1, 500]))
+        self.assertTrue(CustomList([1, 2, 3]) <= CustomList([60]))
+
+    def test_ge(self):
+        self.assertFalse(CustomList([1, 2, 3]) >= CustomList([1, 1, 10]))
+        self.assertFalse(CustomList([1, 2, 3]) >= CustomList([1, 500]))
+        self.assertFalse(CustomList([1, 2, 3]) >= CustomList([60]))
+
+    def test_ne(self):
+        self.assertTrue(CustomList([1, 2, 3]) != CustomList([1, 1, 10]))
+        self.assertTrue(CustomList([1, 2, 3]) != CustomList([1, 500]))
+        self.assertTrue(CustomList([1, 2, 3]) != CustomList([60]))
