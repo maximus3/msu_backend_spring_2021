@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>HTML Документ</h1>
+
+<a href="/posts">Посты</a>
+<br/>
+
+<ul>
+{% for post in post_list %}
+    <li><a href="{{ post.id }}">Пост "{{ post.title }}"</a></li>
+{% endfor %}
+</ul>
+
+<div> Новый пост </div>
+
+<form action="/posts/new" method="post">
+    <div>Название</div>
+  <input name="title" value="" />
+    <div>Текст</div>
+  <input name="text" value="" />
+  <input type="submit" />
+</form>
+
+</body>
+</html>

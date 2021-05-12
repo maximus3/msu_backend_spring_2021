@@ -20,5 +20,6 @@ from application.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chats/', include('chats.urls')),
-    re_path(r'$^', index, name='index')
+    path('posts/', include('posts.urls')),
+    re_path(r'$^', index, name='index'),
 ]
