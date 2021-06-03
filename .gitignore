@@ -1,3 +1,4 @@
 *.pyc
 .idea
 hw_many/messenger/application/local_settings.py
+hw_03/venv

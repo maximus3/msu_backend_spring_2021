@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>HTML Документ</h1>
-
-<a href="/posts">Посты</a>
-<br/>
-
+{% extends 'base.html' %}
+{% block title %} Posts {% endblock %}
+{% block content %}
+    <a href="/home">Home</a>
+    {% block username %}
+        </br>
+        <a href="my_posts">My posts</a>
+        </br>
+    {% endblock %}
 <ul>
 {% for post in post_list %}
     <li><a href="{{ post.id }}">Пост "{{ post.title }}"</a></li>
@@ -22,6 +22,4 @@
   <input name="text" value="" />
   <input type="submit" />
 </form>
-
-</body>
-</html>
+{% endblock %}

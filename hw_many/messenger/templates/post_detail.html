@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends 'base.html' %}
+{% block title %} Posts {% endblock %}
+{% block content %}
 
-<h1>{{ post.title }}</h1>
+    <h1>{{ post.title }}</h1>
 
-<a href="/posts">Все посты</a>
-<br/>
-<br/>
+    <a href="/posts">Все посты</a>
+    <br/>
+    <br/>
 
-<div> {{ post.text }} </div>
-<br/>
+    <div> {{ post.text }} </div>
+    <br/>
 
-<div><i> Автор: {{ post.author.username }} </i></div>
-<div><i> Время публикации {{ post.time }} </i></div>
+    <div><i> Автор: {{ post.author.username }} </i></div>
+    <div><i> Время публикации {{ post.time }} </i></div>
 
-<br/>
-<br/>
-
-
-</body>
-</html>
+{% endblock %}
