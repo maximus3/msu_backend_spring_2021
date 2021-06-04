@@ -9,6 +9,10 @@ from posts.models import Post
 from posts.forms import PostForm
 from posts.serializers import PostSerializer
 
+from posts.tasks import send_email_if_new_object
+
+from posts.documents import PostDocument
+
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
@@ -17,8 +21,16 @@ class PostViewSet(viewsets.ModelViewSet):
 
 @login_required
 @require_http_methods(["GET"])
+def post_search(request):
+    searched_posts = PostDocument.search().query("match", title=request.GET['title'])
+
+    context = {'post_list': searched_posts}
+    return render(request, 'posts.html', context)
+
+
+@login_required
+@require_http_methods(["GET"])
 def post_my(request):
-    print(request.user)
     context = {'post_list': [post for post in Post.objects.filter(author_id=request.user.id)]}
     return render(request, 'posts_my.html', context)
 
@@ -47,6 +59,7 @@ def post_create(request):
     if form.is_valid():
         post = form.save()
         context = {'post_list': [post for post in Post.objects.all()]}
+        send_email_if_new_object.delay(post.title)
         return render(request, 'posts.html', context)
     return JsonResponse({'errors': form.errors}, status=400)
 

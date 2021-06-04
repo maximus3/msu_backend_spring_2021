@@ -1,0 +1,10 @@
+{
+  "v3_use_offset": true,
+  "token_hmac_secret_key": "0a97b7ae-cbfe-43dd-8058-bfc29a4bc160",
+  "admin_password": "1234",
+  "admin_secret": "c9a68552-185b-43fc-b064-6a4f6fddea31",
+  "api_key": "683fa75d-986a-418f-b024-0f0db259c6d2",
+  "allowed_origins": ["*"],
+  "port": 8800,
+  "admin": true
+}

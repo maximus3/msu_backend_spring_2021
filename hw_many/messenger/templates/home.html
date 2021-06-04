@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 {% block title %} Home {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-sm-12 mb-3">
-        <h4 class="text-center"> Welcome {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %} </h4>
-        <a href="/posts">Посты</a>
-        </br>
-        <a href="/logout">Logout</a>
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <h4 class="text-center"> Welcome {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %} </h4>
+            <a href="/posts">Посты</a>
+            </br>
+            <a href="/logout">Logout</a>
+        </div>
     </div>
-</div>
+    <div>
+        <p>Message from admin:</p>
+        <p id="ctfmsg">Hello!</p>
+    </div>
+    <script type="text/javascript">
+            var p = document.getElementById("ctfmsg");
+            var centrifuge = new Centrifuge('ws://localhost:8800/connection/websocket');
+            centrifuge.setToken('{{ CENTRIFUGE_TOKEN }}');
+            centrifuge.subscribe('msg-updates', function (message) {
+                p.textContent = message.data.text;
+            });
+            centrifuge.connect();
+    </script>
 {% endblock %}

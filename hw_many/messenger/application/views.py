@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render, redirect
+from application.local_settings import CENTRIFUGE_TOKEN
 
 
 def login_required(func):
@@ -23,4 +24,4 @@ def login(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'CENTRIFUGE_TOKEN': CENTRIFUGE_TOKEN})
